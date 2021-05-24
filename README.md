@@ -10,3 +10,29 @@
 
 - Raspberry NoIR Camera 
 <img src="https://fp.lnwfile.com/5kz7ix.jpg" height="250" width="400"/>
+
+## 🔧 โปรแกรม Software
+- https://ip-webcam.appspot.com/ 
+  เป็นโปรแกรมสำหรับนำ IP ที่ได้หลังจาก run mjpgstreamer เพื่อเป็นตัวแทนเว็บแคมสำหรับคอมพิวเตอร์
+ 
+## 🔨 Configuration
+1. `sudo apt-get install cmake libjpeg8-dev -y`<br>
+ติดตั้ง library ที่จำเป็นในการใช้งาน
+2. `sudo apt-get install gcc g++ -y`<br>
+ติดตั้ง gcc และ g++ ที่เป็น plugin สำหรับ opencv
+3. `git clone https://github.com/ddessertt/micro-webcam`<br>
+GitHub
+ทำการ clone mjpg streamer ตัว command ที่มี plugin ในการใช้งานร่วมกับตัวกล้อง
+4. `cd micro-webcam/mjpg-streamer-experimental`<br>
+ทำการเข้าโฟลเดอร์ mjpg-streamer-experimental
+5. `make && sudo make install`<br>
+ทำการติดตั้งตัว mjpg streamer
+6. `sudo nano startcam.sh`<br>
+ทำการแก้ไขไฟล์ startcam.sh<br>
+ดังนี้<br>
+`#!/bin/bash
+mjpg_streamer -i "input_raspicam.so -x 1280 -y 720 -fps 30" -o output_http.so`
+7. `sudo chmod a+x startcam.sh`<br>
+ทำการสร้าง startcam.sh ให้สามารถทำงานได้
+8. `startcam.sh`<br>
+เพื่อเรียกใช้งาน
